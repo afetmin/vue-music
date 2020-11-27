@@ -17,8 +17,8 @@ export default {
     return {
       menuList: [
         { id: 1, icon: 'icon-fm', text: '私人FM' },
-        { id: 1, icon: 'icon-me', text: '每日歌曲推荐' },
-        { id: 1, icon: 'icon-sound', text: '云音乐热歌榜' },
+        { id: 2, icon: 'icon-me', text: '每日歌曲推荐' },
+        { id: 3, icon: 'icon-sound', text: '云音乐热歌榜' },
       ],
     }
   },

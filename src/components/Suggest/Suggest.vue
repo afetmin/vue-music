@@ -9,7 +9,9 @@
         <div class="suggest-item-img-wrapper">
           <div class="suggest-img-icon-wrapper">
             <span class="suggest-img-icon"></span>
-            <span class="suggest-img-text">{{ item.playCount }}</span>
+            <span class="suggest-img-text">{{
+              item.playCount | handleMillion
+            }}</span>
           </div>
           <img :src="item.picUrl" class="suggest-item-img" />
         </div>
@@ -31,6 +33,12 @@ export default {
       type: Array,
     },
   },
+  filters: {
+    handleMillion(num) {
+      if (!num) return ''
+      return `${Math.floor(num / 1e4) > 0 ? Math.floor(num / 1e4) : num}万`
+    },
+  },
 }
 </script>
 <style lang='scss' scoped>
@@ -38,18 +46,19 @@ export default {
 .suggest-wrapper {
   width: 100%;
   .title-wrapper {
-    height: px2rem(47);
-    line-height: px2rem(47);
+    height: px2rem(48);
+    line-height: px2rem(48);
+    padding-left: px2rem(8);
   }
   .suggest-list-wrapper {
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
     .suggest-item {
-      flex: 1 0 px2rem(125);
-      width: px2rem(125);
+      flex: 0 0 px2rem(144);
+      width: px2rem(144);
       .suggest-item-img-wrapper {
-        height: px2rem(125);
+        height: px2rem(144);
         position: relative;
         .suggest-img-icon-wrapper {
           position: absolute;
@@ -58,7 +67,13 @@ export default {
           width: px2rem(70);
           height: px2rem(30);
           line-height: px2rem(30);
-          text-align: center;
+          text-align: right;
+          padding-right: px2rem(5);
+          font-size: px2rem(14);
+          .suggest-img-icon {
+          }
+          .suggest-img-text {
+          }
         }
         .suggest-item-img {
           width: 100%;
@@ -68,10 +83,12 @@ export default {
       }
       .suggest-item-text-wrapper {
         height: px2rem(56);
-        padding: px2rem(10) 0;
-        box-sizing: border-box;
+        margin-top: px2rem(10);
+        // padding: px2rem(10) 0;
+        // box-sizing: border-box;
         .suggest-item-text {
-          font-size: px2rem(15);
+          font-size: px2rem(16);
+          line-height: px2rem(20);
           @include ellipsis2(2);
         }
       }
