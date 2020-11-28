@@ -1,11 +1,28 @@
 <template>
   <div class="search-wrapper">
-    <input type="text" class="search-input" placeholder="搜索音乐、歌手、电台" />
+    <input
+      type="text"
+      class="search-input"
+      placeholder="搜索音乐、歌手、电台"
+      @click="ifInput"
+      v-model="inputText"
+    />
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  data() {
+    return {
+      inputText: ''
+    }
+  },
+  methods: {
+    ifInput() {
+
+    }
+  }
+}
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/global';

@@ -7,8 +7,8 @@
     <div class="suggest-list-wrapper">
       <div class="suggest-item" v-for="item in handleData" :key="item.id">
         <div class="suggest-item-img-wrapper">
-          <div class="suggest-img-icon-wrapper">
-            <span class="suggest-img-icon"></span>
+          <div class="suggest-img-icon-wrapper" v-show="showPlayCount">
+            <span class="icon-headphones"></span>
             <span class="suggest-img-text">{{
               item.playCount | handleMillion
             }}</span>
@@ -31,6 +31,10 @@ export default {
     },
     data: {
       type: Array,
+    },
+    showPlayCount: {
+      type: Boolean,
+      default: false,
     },
   },
   filters: {
@@ -75,6 +79,7 @@ export default {
       .suggest-item-img-wrapper {
         height: px2rem(144);
         position: relative;
+
         .suggest-img-icon-wrapper {
           position: absolute;
           right: 0;
@@ -85,12 +90,12 @@ export default {
           text-align: right;
           padding-right: px2rem(5);
           font-size: px2rem(14);
-          .suggest-img-icon {
-          }
           .suggest-img-text {
+            margin-left: px2rem(5);
           }
         }
         .suggest-item-img {
+          border-radius: px2rem(5);
           width: 100%;
           height: 100%;
           background-size: cover;

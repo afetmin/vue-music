@@ -5,7 +5,7 @@
       <div class="scroll">
         <swipper :banners="banners"></swipper>
         <three-menu></three-menu>
-        <suggest :title="sugtitle" :data="personalized"></suggest>
+        <suggest :title="sugtitle" :data="personalized" showPlayCount></suggest>
         <suggest :title="newMusicTitle" :data="newSongs"></suggest>
       </div>
     </scroll>

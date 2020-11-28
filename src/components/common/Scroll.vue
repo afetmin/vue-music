@@ -78,7 +78,6 @@ export default {
     // 保证在DOM渲染完毕后初始化better-scroll，nextTick也可以
     setTimeout(() => {
       this._initScroll()
-      console.log(this.scroll)
     }, 20)
   },
   methods: {
