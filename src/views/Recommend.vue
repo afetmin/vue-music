@@ -1,12 +1,19 @@
 <template>
   <div>
-    <swipper></swipper>
-    <three-menu></three-menu>
-    <suggest :title="title" :data="personalized"></suggest>
+    <scroll class="scroll-wrapper">
+      <!-- 默认选第一个content进行滚动 -->
+      <div class="scroll">
+        <swipper :banners="banners"></swipper>
+        <three-menu></three-menu>
+        <suggest :title="sugtitle" :data="personalized"></suggest>
+        <suggest :title="newMusicTitle" :data="newSongs"></suggest>
+      </div>
+    </scroll>
   </div>
 </template>
 
 <script>
+import Scroll from '../components/common/Scroll.vue'
 import Suggest from '../components/Suggest/Suggest.vue'
 import Swipper from '../components/swipper/Swipper'
 import ThreeMenu from '../components/ThreeMenu/ThreeMenu.vue'
@@ -15,10 +22,12 @@ export default {
     Swipper,
     ThreeMenu,
     Suggest,
+    Scroll,
   },
   data() {
     return {
-      title: '每日推荐',
+      sugtitle: '推荐歌单',
+      newMusicTitle: '最新音乐',
       personalized: [
         {
           id: 5295437787,
@@ -160,61 +169,105 @@ export default {
           highQuality: false,
           alg: 'cityLevel_unknow',
         },
+      ],
+      banners: [
         {
-          id: 3047591896,
-          type: 0,
-          name: '宝藏音乐观丨舒适旋律渲染微醺夜色',
-          copywriter: '热门推荐',
-          picUrl:
-            'https://p1.music.126.net/Dgx4j4kDXIzuBOBuBqZNxQ==/109951164666693147.jpg',
-          canDislike: true,
-          trackNumberUpdateTime: 1602851005247,
-          playCount: 2152100,
-          trackCount: 70,
-          highQuality: false,
-          alg: 'cityLevel_unknow',
+          pic:
+            'http://p1.music.126.net/C07ZG_n10nztZvPz3pIJ4g==/109951165502097840.jpg',
+          targetId: 0,
+          adid: null,
+          targetType: 3000,
+          titleColor: 'blue',
+          typeTitle: '独家策划',
+          url: 'https://music.163.com/m/at/5facf735568306ae9b844fb0',
         },
         {
-          id: 2003004042,
-          type: 0,
-          name: '精选民谣男声‖我们一起走过的时光里',
-          copywriter: '热门推荐',
-          picUrl:
-            'https://p1.music.126.net/4bCz4ZfXtZ05EPBak9ECyQ==/19185378393662598.jpg',
-          canDislike: true,
-          trackNumberUpdateTime: 1525401007938,
-          playCount: 1436428,
-          trackCount: 36,
-          highQuality: false,
-          alg: 'cityLevel_unknow',
+          pic:
+            'http://p1.music.126.net/yAl90R7qGU8hPx3sNtkFVg==/109951165502105749.jpg',
+          targetId: 73876792,
+          adid: null,
+          targetType: 10,
+          titleColor: 'red',
+          typeTitle: '独家',
+          url: null,
         },
         {
-          id: 4920881606,
-          type: 0,
-          name: '网易云音乐年度最热新歌总结',
-          copywriter: '热门推荐',
-          picUrl:
-            'https://p1.music.126.net/M_RLCjS-BY-zIquqig4DIg==/109951164893281259.jpg',
-          canDislike: true,
-          trackNumberUpdateTime: 1605282772871,
-          playCount: 22433552,
-          trackCount: 405,
-          highQuality: false,
-          alg: 'cityLevel_unknow',
+          pic:
+            'http://p1.music.126.net/YV10yyFPG2YDD7G6RaoWdQ==/109951165501897443.jpg',
+          targetId: 5352776096,
+          adid: null,
+          targetType: 1000,
+          titleColor: 'red',
+          typeTitle: '独家',
+          url: null,
         },
         {
-          id: 448664138,
-          type: 0,
-          name: '粤语 / 世界禁大 哪裡只得我共你.',
-          copywriter: '热门推荐',
+          pic:
+            'http://p1.music.126.net/oeoCZPs045qBEpdWlcFXZw==/109951165502117160.jpg',
+          targetId: 1498342485,
+          adid: null,
+          targetType: 1,
+          titleColor: 'red',
+          typeTitle: '新歌首发',
+          url: null,
+        },
+      ],
+      newSongs: [
+        {
+          id: 1496049979,
+          type: 4,
+          name: 'Night Odyssey',
+          copywriter: null,
           picUrl:
-            'https://p1.music.126.net/ygkumLwZoTybz6Zkvt2HdQ==/109951163721713389.jpg',
-          canDislike: true,
-          trackNumberUpdateTime: 1603465891695,
-          playCount: 219910,
-          trackCount: 189,
-          highQuality: false,
-          alg: 'cityLevel_unknow',
+            'http://p1.music.126.net/UMSIOnIS6revSZk2ID2nxA==/109951165476261090.jpg',
+        },
+        {
+          id: 1498312209,
+          type: 4,
+          name: '不及你',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/pET9u1o8gZNH2L0DdtRziw==/109951165498272084.jpg',
+        },
+        {
+          id: 1498335377,
+          type: 4,
+          name: '阿婆',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/oxqExhUGDYZioU49bTiA-A==/109951165498533820.jpg',
+        },
+        {
+          id: 1498317072,
+          type: 4,
+          name: '采仙草',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/9C4AtgG_kgdOJMwCnIe6Cg==/109951165498280120.jpg',
+        },
+        {
+          id: 1498323714,
+          type: 4,
+          name: '百万富翁（Millionaire）',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/k_wIauknmplXlN_xJSx9hA==/109951165498406736.jpg',
+        },
+        {
+          id: 1498051726,
+          type: 4,
+          name: '兜风',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/nDf4-LgGD27uJda6qCB9Fw==/109951165495725897.jpg',
+        },
+        {
+          id: 1498317246,
+          type: 4,
+          name: '发光的我',
+          copywriter: null,
+          picUrl:
+            'http://p1.music.126.net/VyWbWjDhJIK7RFA3kBN8CA==/109951165498305410.jpg',
         },
       ],
     }
@@ -223,4 +276,11 @@ export default {
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
+// 设置去除头部的滚动区域wrapper
+.scroll-wrapper {
+  overflow: hidden;
+  position: absolute;
+  top: px2rem(94);
+  bottom: 0;
+}
 </style>

@@ -21,6 +21,7 @@ export default {}
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
 .nav-bar {
+  position: relative;
   @include center;
   width: 100%;
   box-sizing: border-box;

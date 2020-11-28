@@ -2,10 +2,10 @@
   <div class="suggest-wrapper">
     <div class="title-wrapper">
       <span class="text">{{ title }}</span>
-      <span class="icon-right"></span>
+      <span class="icon-chevron-right"></span>
     </div>
     <div class="suggest-list-wrapper">
-      <div class="suggest-item" v-for="item in data" :key="item.id">
+      <div class="suggest-item" v-for="item in handleData" :key="item.id">
         <div class="suggest-item-img-wrapper">
           <div class="suggest-img-icon-wrapper">
             <span class="suggest-img-icon"></span>
@@ -39,6 +39,15 @@ export default {
       return `${Math.floor(num / 1e4) > 0 ? Math.floor(num / 1e4) : num}万`
     },
   },
+  computed: {
+    handleData() {
+      if (this.data && this.data.length > 6) {
+        return this.data.slice(0, 6)
+      }
+      return this.data
+    },
+  },
+  methods: {},
 }
 </script>
 <style lang='scss' scoped>
@@ -49,6 +58,12 @@ export default {
     height: px2rem(48);
     line-height: px2rem(48);
     padding-left: px2rem(8);
+    .icon-chevron-right {
+      display: inline-block;
+      vertical-align: middle;
+      margin-bottom: px2rem(2);
+      font-size: px2rem(22);
+    }
   }
   .suggest-list-wrapper {
     display: flex;
