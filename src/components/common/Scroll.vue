@@ -76,9 +76,9 @@ export default {
   },
   mounted() {
     // 保证在DOM渲染完毕后初始化better-scroll，nextTick也可以
-    setTimeout(() => {
+    this.$nextTick(() => {
       this._initScroll()
-    }, 20)
+    })
   },
   methods: {
     _initScroll() {
