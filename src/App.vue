@@ -1,11 +1,14 @@
 <template>
-  <div id="app">
+  <div id="app" @touchmove.prevent>
     <m-header></m-header>
     <nav-bar></nav-bar>
-    <router-view />
+    <slider>
+      <router-view />
+    </slider>
   </div>
 </template>
 <script>
+import Slider from './components/common/Slider.vue'
 import MHeader from './components/m-header/MHeader'
 import NavBar from './components/NavBar/NavBar'
 
@@ -22,12 +25,13 @@ export default {
   components: {
     MHeader,
     NavBar,
+    Slider,
   },
 }
 </script>
 <style lang="scss">
 #app {
   overflow: hidden;
-  height: 100vh;
+  // height: 100vh;
 }
 </style>

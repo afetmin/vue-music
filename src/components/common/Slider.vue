@@ -4,7 +4,7 @@
       <div class="slide-banner-content">
         <slot></slot>
       </div>
-      <div class="dots-wrapper">
+      <div class="dots-wrapper" v-if="dotsVisible">
         <span
           class="dot"
           v-for="num in bannersLen"
@@ -43,6 +43,10 @@ export default {
     },
     bannersLen: {
       type: Number,
+    },
+    dotsVisible: {
+      type: Boolean,
+      default: true,
     },
   },
   mounted() {

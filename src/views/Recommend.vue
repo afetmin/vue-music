@@ -2,7 +2,7 @@
   <div>
     <scroll class="scroll-wrapper">
       <!-- 默认选第一个content进行滚动 -->
-      <div class="scroll">
+      <div class="scroll" @touchstart="onTouchStart" @touchend="onTouchEnd">
         <swipper :banners="banners"></swipper>
         <three-menu></three-menu>
         <suggest :data="personalized" showPlayCount></suggest>
@@ -26,6 +26,8 @@ export default {
   },
   data() {
     return {
+      start: 0,
+      end: 0,
       personalized: {
         title: '推荐歌单',
         data: [
@@ -275,6 +277,25 @@ export default {
         ],
       },
     }
+  },
+  methods: {
+    onTouchStart(e) {
+      this.start = e.changedTouches[0].clientX
+    },
+    onTouchEnd(e) {
+      this.end = e.changedTouches[0].clientX
+      this.handleSlide()
+    },
+    handleSlide() {
+      const offsetX = this.end - this.start
+      if (offsetX < -50) {
+        console.log('next')
+      } else if (offsetX > 50) {
+        console.log('prev')
+      } else {
+        console.log('滑动距离不够')
+      }
+    },
   },
 }
 </script>
