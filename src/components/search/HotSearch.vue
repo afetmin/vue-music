@@ -1,6 +1,6 @@
 <template>
   <transition name="hot-search-move">
-    <scroll class="hot-search-wrapper">
+    <scroll class="hot-search-wrapper" ref="scroll">
       <div>
         <div class="hot-search-title">热门搜索</div>
         <div class="hot-search-content-wrapper">
@@ -11,7 +11,7 @@
             >{{ item.text }}</span
           >
         </div>
-        <history-search :historySearchList="historySearchList"></history-search>
+        <history-search :historySearchList="historySearchList" @scrollRefresh="scrollRefresh"></history-search>
       </div>
     </scroll>
   </transition>
@@ -109,6 +109,11 @@ export default {
       ],
     }
   },
+  methods: {
+    scrollRefresh() {
+      this.$refs.scroll.refresh()
+    }
+  }
 }
 </script>
 <style lang='scss' scoped>
@@ -124,6 +129,7 @@ export default {
   padding: px2rem(15);
   color: $font-color;
   font-size: px2rem(18);
+  background-color: $search-bg-color;
   .hot-search-title {
     line-height: px2rem(40);
     height: px2rem(40);

@@ -1,11 +1,11 @@
 <template>
   <div class="suggest-wrapper">
     <div class="title-wrapper">
-      <span class="text">{{ title }}</span>
-      <span class="icon-chevron-right"></span>
+      <span class="text">{{ data.title }}</span>
+      <span class="icon-right"></span>
     </div>
     <div class="suggest-list-wrapper">
-      <div class="suggest-item" v-for="item in handleData" :key="item.id">
+      <div :class="colClass" v-for="item in handleData" :key="item.id">
         <div class="suggest-item-img-wrapper">
           <div class="suggest-img-icon-wrapper" v-show="showPlayCount">
             <span class="icon-headphones"></span>
@@ -26,11 +26,12 @@
 <script>
 export default {
   props: {
-    title: {
-      type: String,
-    },
     data: {
-      type: Array,
+      type: Object,
+    },
+    columns: {
+      type: Number,
+      default: 3,
     },
     showPlayCount: {
       type: Boolean,
@@ -45,10 +46,13 @@ export default {
   },
   computed: {
     handleData() {
-      if (this.data && this.data.length > 6) {
-        return this.data.slice(0, 6)
+      if (this.data && this.data.data.length > 6) {
+        return this.data.data.slice(0, 6)
       }
-      return this.data
+      return this.data.data
+    },
+    colClass() {
+      return this.columns === 3 ? 'suggest-item' : 'suggest-two-item'
     },
   },
   methods: {},
@@ -62,7 +66,7 @@ export default {
     height: px2rem(48);
     line-height: px2rem(48);
     padding-left: px2rem(8);
-    .icon-chevron-right {
+    .icon-right {
       display: inline-block;
       vertical-align: middle;
       margin-bottom: px2rem(2);
@@ -72,12 +76,51 @@ export default {
   .suggest-list-wrapper {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: space-around;
     .suggest-item {
       flex: 0 0 px2rem(144);
       width: px2rem(144);
       .suggest-item-img-wrapper {
-        height: px2rem(144);
+        // height: px2rem(144);
+        position: relative;
+
+        .suggest-img-icon-wrapper {
+          position: absolute;
+          right: 0;
+          color: white;
+          width: px2rem(70);
+          height: px2rem(30);
+          line-height: px2rem(30);
+          text-align: right;
+          padding-right: px2rem(5);
+          font-size: px2rem(14);
+          .suggest-img-text {
+            margin-left: px2rem(5);
+          }
+        }
+        .suggest-item-img {
+          border-radius: px2rem(5);
+          width: 100%;
+          height: 100%;
+          background-size: cover;
+        }
+      }
+      .suggest-item-text-wrapper {
+        height: px2rem(56);
+        margin-top: px2rem(10);
+        // padding: px2rem(10) 0;
+        // box-sizing: border-box;
+        .suggest-item-text {
+          font-size: px2rem(16);
+          line-height: px2rem(20);
+          @include ellipsis2(2);
+        }
+      }
+    }
+    .suggest-two-item {
+      flex: 0 0 px2rem(210);
+      width: px2rem(210);
+      .suggest-item-img-wrapper {
         position: relative;
 
         .suggest-img-icon-wrapper {

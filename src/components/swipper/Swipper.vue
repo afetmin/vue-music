@@ -23,13 +23,13 @@ export default {
 @import '@/assets/styles/global';
 .swipper-wrapper {
   width: 100vw;
-  height: px2rem(130);
+  height: px2rem(150);
   background: $searchbar-bg;
   overflow: hidden;
   .swipper-item {
     display: inline-block;
     width: 100%;
-    height: px2rem(130);
+    height: px2rem(150);
     overflow: hidden;
     text-align: center;
     img {
