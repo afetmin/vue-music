@@ -73,7 +73,12 @@ export default {
       type: Number,
       default: 20,
     },
+    startX: {
+      type: Number,
+      default: 0,
+    },
   },
+  computed: {},
   mounted() {
     // 保证在DOM渲染完毕后初始化better-scroll，nextTick也可以
     this.$nextTick(() => {
@@ -90,6 +95,7 @@ export default {
         probeType: this.probeType,
         click: this.click,
         scrollX: this.scrollX,
+        startX: this.startX,
         // 取消某个方向的回弹动画
         bounce: {
           top: false,

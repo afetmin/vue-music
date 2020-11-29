@@ -1,5 +1,5 @@
 <template>
-  <scroll class="scroll-wrapper">
+  <scroll class="scroll-wrapper" ref="scroll">
     <div>
       <single-sug :singInfo="singInfo"></single-sug>
       <suggest :data="allPlayList" :columns="2" showPlayCount></suggest>
@@ -11,7 +11,9 @@
 import Scroll from '../components/common/Scroll.vue'
 import SingleSug from '../components/SingleSug/SingleSug.vue'
 import Suggest from '../components/Suggest/Suggest.vue'
+import { musicMixin } from '@/utils/mixin'
 export default {
+  mixins: [musicMixin],
   components: { SingleSug, Suggest, Scroll },
   data() {
     return {
@@ -170,14 +172,11 @@ export default {
       },
     }
   },
+  mounted() {
+    this.setScrollWrapperHeight()
+  }
 }
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
-.scroll-wrapper {
-  overflow: hidden;
-  position: absolute;
-  top: px2rem(94);
-  bottom: 0;
-}
 </style>

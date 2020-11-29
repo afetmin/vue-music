@@ -1,45 +1,33 @@
 <template>
   <div class="nav-bar">
-    <router-link tag="div" class="nav-item" to="/recommend">
-      <span class="nav-link">推荐</span>
-    </router-link>
-    <router-link tag="div" class="nav-item" to="/playlist">
-      <span class="nav-link">歌单</span>
-    </router-link>
-    <router-link tag="div" class="nav-item" to="/artist">
-      <span class="nav-link">歌手</span>
-    </router-link>
-    <router-link tag="div" class="nav-item" to="/rank">
-      <span class="nav-link">排行</span>
-    </router-link>
+    <van-tabs v-model="active" swipeable animated>
+      <van-tab v-for="(item, index) in navs" :title="item.title" :key="index">
+        <component :is="item.component"></component>
+      </van-tab>
+    </van-tabs>
   </div>
 </template>
 
 <script>
-export default {}
+export default {
+  components: {},
+  props: {
+    navs: {
+      type: Array,
+    },
+  },
+  data() {
+    return {
+      active: 0,
+    }
+  },
+}
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
 .nav-bar {
-  position: relative;
-  @include center;
-  width: 100%;
-  box-sizing: border-box;
-  height: px2rem(42);
-  border-bottom: px2rem(1) solid $searchbar-bg;
-  .nav-item {
-    flex: 1 0 px2rem(94);
-    width: px2rem(94);
-    height: 100%;
-    @include center;
-  }
-  .router-link-active {
-    &.nav-item {
-      border-bottom: px2rem(2) solid $main-color;
-    }
-    .nav-link {
-      color: $main-color;
-    }
+  /deep/ .van-tabs__wrap {
+    border-bottom: px2rem(1) solid $searchbar-bg;
   }
 }
 </style>

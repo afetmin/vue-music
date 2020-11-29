@@ -1,17 +1,14 @@
 <template>
-  <div class="swipper-wrapper">
-    <slider v-if="banners" :bannersLen="banners.length">
-      <div class="swipper-item" v-for="item in banners" :key="item.targetId">
-        <img :src="item.pic" />
-      </div>
-    </slider>
-  </div>
+  <van-swipe class="swipper-wrapper" :autoplay="3000" indicator-color="white">
+    <van-swipe-item v-for="item in banners" :key="item.targetId">
+      <img v-lazy="item.pic" />
+    </van-swipe-item>
+  </van-swipe>
 </template>
 
 <script>
-import Slider from '../common/Slider.vue'
 export default {
-  components: { Slider },
+  components: {},
   props: {
     banners: {
       type: Array,
@@ -26,16 +23,9 @@ export default {
   height: px2rem(150);
   background: $searchbar-bg;
   overflow: hidden;
-  .swipper-item {
-    display: inline-block;
+  img {
     width: 100%;
-    height: px2rem(150);
-    overflow: hidden;
-    text-align: center;
-    img {
-      width: 100%;
-      height: 100%;
-    }
+    height: 100%;
   }
 }
 </style>

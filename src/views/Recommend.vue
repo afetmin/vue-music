@@ -1,8 +1,8 @@
 <template>
   <div>
-    <scroll class="scroll-wrapper">
+    <scroll class="scroll-wrapper" ref="scroll">
       <!-- 默认选第一个content进行滚动 -->
-      <div class="scroll" @touchstart="onTouchStart" @touchend="onTouchEnd">
+      <div class="scroll">
         <swipper :banners="banners"></swipper>
         <three-menu></three-menu>
         <suggest :data="personalized" showPlayCount></suggest>
@@ -17,7 +17,9 @@ import Scroll from '../components/common/Scroll.vue'
 import Suggest from '../components/Suggest/Suggest.vue'
 import Swipper from '../components/swipper/Swipper'
 import ThreeMenu from '../components/ThreeMenu/ThreeMenu.vue'
+import { musicMixin } from '@/utils/mixin'
 export default {
+  mixins: [musicMixin],
   components: {
     Swipper,
     ThreeMenu,
@@ -278,34 +280,13 @@ export default {
       },
     }
   },
-  methods: {
-    onTouchStart(e) {
-      this.start = e.changedTouches[0].clientX
-    },
-    onTouchEnd(e) {
-      this.end = e.changedTouches[0].clientX
-      this.handleSlide()
-    },
-    handleSlide() {
-      const offsetX = this.end - this.start
-      if (offsetX < -50) {
-        console.log('next')
-      } else if (offsetX > 50) {
-        console.log('prev')
-      } else {
-        console.log('滑动距离不够')
-      }
-    },
+  computed: {},
+  mounted() {
+    this.setScrollWrapperHeight()
   },
+  methods: {},
 }
 </script>
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
-// 设置去除头部的滚动区域wrapper
-.scroll-wrapper {
-  overflow: hidden;
-  position: absolute;
-  top: px2rem(94);
-  bottom: 0;
-}
 </style>
