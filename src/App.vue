@@ -39,18 +39,22 @@ export default {
       return [
         {
           title: '推荐',
+          path: '/recommend',
           component: Recommend,
         },
         {
           title: '歌单',
+          path: '/playlist',
           component: PlayList,
         },
         {
           title: '歌手',
+          path: '/artist',
           component: Artist,
         },
         {
-          title: '排行',
+          title: '排行榜',
+          path: '/rank',
           component: Rank,
         },
       ]

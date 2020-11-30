@@ -5,8 +5,8 @@
       <div class="scroll">
         <swipper :banners="banners"></swipper>
         <three-menu></three-menu>
-        <suggest :data="personalized" showPlayCount ></suggest>
-        <suggest :data="newSongs" @imgLoad="imgLoad"></suggest>
+        <suggest :data="personalized" showPlayCount></suggest>
+        <suggest :data="newSongs"></suggest>
       </div>
     </scroll>
   </div>
@@ -283,13 +283,14 @@ export default {
   computed: {},
   mounted() {
     this.setScrollWrapperHeight()
-    this.imgLoad()
-  },
-  methods: {
-    imgLoad() {
+    Promise.all(this.imgAllLoad()).then(() => {
       this.$refs.scroll.refresh()
-    }
+    })
   },
+  updated() {
+    this.$refs.scroll.refresh()
+  },
+  methods: {},
 }
 </script>
 <style lang='scss' scoped>

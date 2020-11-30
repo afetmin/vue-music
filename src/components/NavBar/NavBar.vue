@@ -1,7 +1,21 @@
 <template>
   <div class="nav-bar">
-    <van-tabs v-model="active" swipeable animated lazy-render>
-      <van-tab v-for="(item, index) in navs" :title="item.title" :key="index">
+    <van-tabs
+      v-model="active"
+      swipeable
+      animated
+      lazy-render
+      :line-width="lineWidth"
+      :line-height="2"
+      :title-active-color="titleActiveColor"
+      ref="vantabs"
+    >
+      <van-tab
+        v-for="(item, index) in navs"
+        :title="item.title"
+        :key="index"
+        :to="item.path"
+      >
         <component :is="item.component"></component>
       </van-tab>
     </van-tabs>
@@ -20,6 +34,15 @@ export default {
     return {
       active: 0,
     }
+  },
+  computed: {
+    lineWidth() {
+      const lineWidth = window.innerWidth / this.navs.length
+      return lineWidth
+    },
+    titleActiveColor() {
+      return '#ee0a24'
+    },
   },
 }
 </script>

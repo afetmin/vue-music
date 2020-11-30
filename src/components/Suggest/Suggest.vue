@@ -56,25 +56,10 @@ export default {
     },
   },
   mounted() {
-    Promise.all(this.imgAllLoad()).then(() => {
-      this.$emit('imgLoad')
-    })
+
   },
   methods: {
-    imgAllLoad() {
-      const mulitImg = document.querySelectorAll('.suggest-item-img')
-      const promiseAll = []
-      const imgTotal = mulitImg.length
-      for (let i = 0; i < imgTotal; i++) {
-        promiseAll[i] = new Promise((resolve, reject) => {
-          mulitImg[i].onload = function () {
-            // 第i张加载完成
-            resolve(mulitImg[i])
-          }
-        })
-      }
-      return promiseAll
-    },
+
   },
 }
 </script>

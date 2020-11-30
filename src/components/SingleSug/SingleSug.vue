@@ -66,7 +66,7 @@ export default {
     justify-content: space-between;
     height: px2rem(100);
     .desc-title {
-      font-size: px2rem(20);
+      font-size: px2rem(19);
       height: px2rem(35);
       .icon-right {
         vertical-align: -8%;

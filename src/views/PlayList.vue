@@ -21,7 +21,7 @@ export default {
         id: 5295437787,
         more: '听歌写评论',
         info: '说唱||请接收一封棒棒糖一样甜的情书',
-        title: '编辑推荐',
+        title: '精品歌单',
         picUrl:
           'https://p1.music.126.net/A5vMlKxhsLYqRQLZKYydWQ==/109951165226049642.jpg',
       },
@@ -174,13 +174,14 @@ export default {
   },
   mounted() {
     this.setScrollWrapperHeight()
-    this.imgLoad()
-  },
-  methods: {
-    imgLoad() {
+    Promise.all(this.imgAllLoad()).then(() => {
       this.$refs.scroll.refresh()
-    }
+    })
   },
+  updated() {
+    this.$refs.scroll.refresh()
+  },
+  methods: {},
 }
 </script>
 <style lang='scss' scoped>
