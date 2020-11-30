@@ -1,6 +1,6 @@
 <template>
   <div class="nav-bar">
-    <van-tabs v-model="active" swipeable animated>
+    <van-tabs v-model="active" swipeable animated lazy-render>
       <van-tab v-for="(item, index) in navs" :title="item.title" :key="index">
         <component :is="item.component"></component>
       </van-tab>

@@ -174,7 +174,13 @@ export default {
   },
   mounted() {
     this.setScrollWrapperHeight()
-  }
+    this.imgLoad()
+  },
+  methods: {
+    imgLoad() {
+      this.$refs.scroll.refresh()
+    }
+  },
 }
 </script>
 <style lang='scss' scoped>
