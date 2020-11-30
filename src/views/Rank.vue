@@ -22,6 +22,7 @@
             :title="img.name"
             :imgUrl="img.coverImgUrl"
             :imgType="2"
+            :updateFrequency="img.updateFrequency"
           ></rank-img>
         </div>
       </div>
@@ -35,6 +36,7 @@
             :title="img.name"
             :imgUrl="img.coverImgUrl"
             :imgType="2"
+            :updateFrequency="img.updateFrequency"
           ></rank-img>
         </div>
       </div>
@@ -63,11 +65,13 @@ export default {
   },
   mounted() {
     this.setScrollWrapperHeight()
+    // 当图片全部加载完成后调用refresh方法，更新bs
     Promise.all(this.imgAllLoad()).then(() => {
       this.$refs.scroll.refresh()
     })
   },
   updated() {
+    // 数据异步获取后，渲染到页面上，也要更新 bs，否则bs的高度正确，但是 hasVerticalScroll是false
     this.$refs.scroll.refresh()
   },
   methods: {
@@ -88,7 +92,6 @@ export default {
               item.tags.includes('英伦')
             )
           })
-          console.log(this.rankAreaList)
         }
       })
     },

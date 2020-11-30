@@ -21,7 +21,6 @@ export const musicMixin = {
     },
     imgAllLoad() {
       const mulitImg = document.getElementsByTagName('img')
-      console.log(mulitImg)
       const promiseAll = []
       const imgTotal = mulitImg.length
       for (let i = 0; i < imgTotal; i++) {
