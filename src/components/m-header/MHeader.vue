@@ -12,7 +12,9 @@
         v-model="searchText"
         @keyup.13.exact="search"
       />
-      <hot-search v-if="hotSearchVisible"></hot-search>
+      <transition name="hot-search-move">
+        <hot-search v-if="hotSearchVisible"></hot-search>
+      </transition>
     </div>
     <div class="search-cancel-wrapper" @click="back" v-if="hotSearchVisible">
       <span class="cancel-text">取消</span>

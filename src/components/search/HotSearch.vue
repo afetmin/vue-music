@@ -1,5 +1,4 @@
 <template>
-  <transition name="hot-search-move">
     <scroll class="hot-search-wrapper" ref="scroll">
       <div>
         <div class="hot-search-title">热门搜索</div>
@@ -14,7 +13,6 @@
         <history-search :historySearchList="historySearchList" @scrollRefresh="scrollRefresh"></history-search>
       </div>
     </scroll>
-  </transition>
 </template>
 
 <script>
