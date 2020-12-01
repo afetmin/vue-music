@@ -16,8 +16,10 @@ export const musicMixin = {
       'setTopHeight'
     ]),
     setScrollWrapperHeight() {
-      this.$refs.scroll.$el.style.height =
-        window.innerHeight - this.topHeight + 'px'
+      if (this.$refs.scroll.$el) {
+        this.$refs.scroll.$el.style.height =
+          window.innerHeight - this.topHeight + 'px'
+      }
     },
     imgAllLoad() {
       const mulitImg = document.getElementsByTagName('img')

@@ -55,9 +55,9 @@ export default {
   components: { Scroll, RankItem, RankImg },
   data() {
     return {
-      ranklist: null,
-      rankUkList: null,
-      rankAreaList: null,
+      ranklist: [],
+      rankUkList: [],
+      rankAreaList: [],
     }
   },
   created() {

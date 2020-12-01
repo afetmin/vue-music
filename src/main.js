@@ -11,7 +11,7 @@ import {
   Swipe,
   SwipeItem,
   Lazyload,
-  List
+  Loading
 } from 'vant'
 Vue.use(Tab)
 Vue.use(Tabs)
@@ -20,7 +20,7 @@ Vue.use(SwipeItem)
 Vue.use(Lazyload, {
   loading: require('@/assets/imgs/webp.webp')
 })
-Vue.use(List)
+Vue.use(Loading)
 
 Vue.config.productionTip = false
 
