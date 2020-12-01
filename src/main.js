@@ -17,7 +17,9 @@ Vue.use(Tab)
 Vue.use(Tabs)
 Vue.use(Swipe)
 Vue.use(SwipeItem)
-Vue.use(Lazyload)
+Vue.use(Lazyload, {
+  loading: require('@/assets/imgs/webp.webp')
+})
 Vue.use(List)
 
 Vue.config.productionTip = false
