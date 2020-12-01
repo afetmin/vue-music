@@ -13,7 +13,7 @@
               item.playCount | handleMillion
             }}</span>
           </div>
-          <img :src="item.picUrl" class="suggest-item-img" />
+          <img v-lazy="item.picUrl" class="suggest-item-img" />
         </div>
         <div class="suggest-item-text-wrapper">
           <span class="suggest-item-text">{{ item.name }}</span>

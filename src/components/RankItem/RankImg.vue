@@ -1,7 +1,7 @@
 <template>
   <div :class="imgWrapper">
     <div class="img-mask-wrapper">
-      <img :src="imgUrl" />
+      <img v-lazy="imgUrl" />
       <div class="img-mask" v-if="updateFrequency">
         <span class="img-mask-title">{{ updateFrequency }}</span>
       </div>

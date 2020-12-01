@@ -1,7 +1,7 @@
 <template>
   <div class="single-wrapper">
     <div :class="imgWrapper">
-      <img :src="singInfo.picUrl" />
+      <img v-lazy="singInfo.picUrl" />
     </div>
     <div :class="descWrapper">
       <div class="desc-title" v-if="singInfo.title">
