@@ -32,14 +32,11 @@ export default {
   },
   data() {
     return {
-      active: 0,
+      active: 2,
+      lineWidth: window.innerWidth / this.navs.length,
     }
   },
   computed: {
-    lineWidth() {
-      const lineWidth = window.innerWidth / this.navs.length
-      return lineWidth
-    },
     titleActiveColor() {
       return '#ee0a24'
     },
