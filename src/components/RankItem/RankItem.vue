@@ -10,7 +10,7 @@
         v-for="(song, index) in rankitem.tracks"
         :key="index"
       >
-        {{ index+1 + '.' +song.first + '-' + song.second }}
+        {{ (index + 1 + '.' + song.first + '-' + song.second) | handleSecond }}
       </div>
     </div>
   </div>
@@ -26,6 +26,11 @@ export default {
       default() {
         return {}
       },
+    },
+  },
+  filters: {
+    handleSecond(val) {
+      return val.split('/').slice(0, 2).join('/')
     },
   },
 }
