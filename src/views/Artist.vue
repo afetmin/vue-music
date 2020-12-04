@@ -1,41 +1,39 @@
 <template>
   <scroll ref="scroll" class="scroll-wrapper">
-    <list-view></list-view>
+    <list-view :data="singers"></list-view>
   </scroll>
 </template>
 
 <script>
 import Scroll from '../components/common/Scroll.vue'
 import ListView from '../components/ListView/ListView.vue'
-import { getSinger } from '@/api/singer'
-
-const HOT_NAME_LEN = 5
-
+import { musicMixin } from '@/utils/mixin'
+import axios from 'axios'
 export default {
+  mixins: [musicMixin],
   components: { Scroll, ListView },
+  data() {
+    return {
+      singers: [],
+    }
+  },
+  created() {
+    axios({
+      url: './singerlist.json',
+      method: 'get',
+    }).then((res) => {
+      this.singers = res.data
+    })
+  },
   mounted() {
-    Promise.all([this._getHotSingerList(), this._getCharSingerList()]).then(
-      (data) => {
-        console.log(data)
-      }
-    )
+    console.log(this.$refs.scroll)
+    this.setScrollWrapperHeight()
+    this.$refs.scroll.refresh()
   },
-  methods: {
-    _getHotSingerList() {
-      return getSinger(-1, 5).then((res) => {
-        if (res.code === 200) {
-          return Promise.resolve(res.artists)
-        }
-      })
-    },
-    _getCharSingerList() {
-      return getSinger(undefined, 100).then((res) => {
-        if (res.code === 200) {
-          return Promise.resolve(res.artists)
-        }
-      })
-    },
+  updated() {
+    this.$refs.scroll.refresh()
   },
+  methods: {},
 }
 </script>
 <style lang='scss' scoped>

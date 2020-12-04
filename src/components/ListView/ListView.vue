@@ -7,15 +7,15 @@
         :key="index"
         ref="listGroup"
       >
-        <h2 class="list-group-title">{{ group.title }}</h2>
+        <h2 class="list-group-title">{{ group.label }}</h2>
         <uL>
           <li
             @click="selectItem(item)"
-            v-for="(item, index) in group.items"
+            v-for="(item, index) in group.singers"
             :key="index"
             class="list-group-item"
           >
-            <img class="avatar" v-lazy="item.avatar" />
+            <img class="avatar" v-lazy="item.picUrl" />
             <span class="name">{{ item.name }}</span>
           </li>
         </uL>
@@ -39,30 +39,31 @@ export default {
 <style lang='scss' scoped>
 @import '@/assets/styles/global';
 .listview {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  overflow: hidden;
+  // position: relative;
+  // width: 100%;
+  // height: 100%;
+  // overflow: hidden;
   .list-group {
-    padding-bottom: 30px;
+    padding-bottom: px2rem(30);
     .list-group-title {
-      height: 30px;
-      line-height: 30px;
-      padding-left: 20px;
+      height: px2rem(30);
+      line-height: px2rem(30);
+      padding-left: px2rem(20);
       font-size: px2rem(20);
-      .list-group-item {
-        display: flex;
-        align-items: center;
-        padding: 20px 0 0 30px;
-        .avatar {
-          width: 50px;
-          height: 50px;
-          border-radius: 50%;
-          .name {
-            margin-left: 20px;
-            font-size: px2rem(18);
-          }
-        }
+      background: $menu-color;
+    }
+    & .list-group-item {
+      display: flex;
+      align-items: center;
+      padding: px2rem(20) 0 0 px2rem(30);
+      .avatar {
+        width: px2rem(60);
+        height: px2rem(60);
+        border-radius: 50%;
+      }
+      .name {
+        margin-left: px2rem(20);
+        font-size: px2rem(18);
       }
     }
   }
