@@ -163,7 +163,7 @@ export default {
       setTimeout(() => {
         this.refresh()
       }, this.refreshDelay)
-    },
+    }
   },
 }
 </script>

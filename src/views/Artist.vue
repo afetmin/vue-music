@@ -1,17 +1,16 @@
 <template>
-  <scroll ref="scroll" class="scroll-wrapper">
+  <div>
     <list-view :data="singers"></list-view>
-  </scroll>
+  </div>
 </template>
 
 <script>
-import Scroll from '../components/common/Scroll.vue'
 import ListView from '../components/ListView/ListView.vue'
 import { musicMixin } from '@/utils/mixin'
 import axios from 'axios'
 export default {
   mixins: [musicMixin],
-  components: { Scroll, ListView },
+  components: { ListView },
   data() {
     return {
       singers: [],
@@ -25,14 +24,8 @@ export default {
       this.singers = res.data
     })
   },
-  mounted() {
-    console.log(this.$refs.scroll)
-    this.setScrollWrapperHeight()
-    this.$refs.scroll.refresh()
-  },
-  updated() {
-    this.$refs.scroll.refresh()
-  },
+  mounted() {},
+  updated() {},
   methods: {},
 }
 </script>

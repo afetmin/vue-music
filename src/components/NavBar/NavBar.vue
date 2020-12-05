@@ -5,7 +5,6 @@
       swipeable
       animated
       lazy-render
-      :line-width="lineWidth"
       :line-height="2"
       :title-active-color="titleActiveColor"
       ref="vantabs"
@@ -33,7 +32,6 @@ export default {
   data() {
     return {
       active: 2,
-      lineWidth: window.innerWidth / this.navs.length,
     }
   },
   computed: {
