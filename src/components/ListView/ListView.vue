@@ -46,6 +46,9 @@
         </li>
       </ul>
     </div>
+    <div class="list-fixed" ref="fixed" v-show="fixedTitle">
+      <div class="fixed-title">{{fixedTitle}} </div>
+    </div>
   </scroll>
 </template>
 
@@ -69,6 +72,7 @@ export default {
     return {
       currentIndex: 0,
       scrollY: -1,
+      diff: -1 // 顶部title的偏移
     }
   },
   computed: {
@@ -77,6 +81,12 @@ export default {
         return group.label.slice(0, 1)
       })
     },
+    fixedTitle() {
+      if (this.scrollY > 0) {
+        return '' // 往下滑动不变
+      }
+      return this.data[this.currentIndex] ? this.data[this.currentIndex].label : ''
+    }
   },
   watch: {
     data: {
@@ -90,19 +100,31 @@ export default {
     scrollY(newY) {
       const listHeight = this.listHeight
       if (newY > 0) {
-        this.currentIndex = 0
+        this.currentIndex = 0 // 往下滑一直是第一个
         return
       }
       for (let i = 0; i < listHeight.length - 1; i++) {
         const height1 = listHeight[i]
         const height2 = listHeight[i + 1]
+        // 往上滑Y是负值，落在区间时改变currentIndex,将偏移量变成第二高度减去滑动值
         if (-newY >= height1 && -newY < height2) {
           this.currentIndex = i
+          this.diff = height2 + newY
           return
         }
       }
       this.currentIndex = listHeight.length - 2
     },
+    diff(newVal) {
+      const TITLE_HEIGHT = this.$refs.fixed.clientHeight
+      const fixedTop = (newVal > 0 && newVal < TITLE_HEIGHT) ? newVal - TITLE_HEIGHT : 0
+      // 这个判断可以使下一个title顶到上一个title时才运行后面的代码，不必每次都要操作dom
+      if (this.fixedTop === fixedTop) {
+        return
+      }
+      this.fixedTop = fixedTop
+      this.$refs.fixed.style.transform = `translate3d(0,${fixedTop}px,0)`
+    }
   },
   created() {
     this.touch = {}
@@ -202,6 +224,19 @@ export default {
       &.current {
         color: $main-color;
       }
+    }
+  }
+  .list-fixed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    .fixed-title {
+      height: px2rem(25);
+      line-height: px2rem(25);
+      padding-left: px2rem(20);
+      font-size: px2rem(18);
+      background: $menu-color;
     }
   }
 }
