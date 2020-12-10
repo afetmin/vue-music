@@ -22,6 +22,12 @@
 </template>
 
 <script>
+const routerMap = {
+  recommend: 0,
+  playlist: 1,
+  artist: 2,
+  rank: 3,
+}
 export default {
   components: {},
   props: {
@@ -33,6 +39,24 @@ export default {
     return {
       active: 2,
     }
+  },
+  watch: {
+    active(index) {
+      switch (index) {
+        case routerMap.recommend:
+          this.$router.push('/recommend')
+          break
+        case routerMap.playlist:
+          this.$router.push('/playlist')
+          break
+        case routerMap.artist:
+          this.$router.push('/artist')
+          break
+        case routerMap.rank:
+          this.$router.push('/rank')
+          break
+      }
+    },
   },
   computed: {
     titleActiveColor() {
